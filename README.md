@@ -57,3 +57,15 @@ Database Setup
 
 
 Now, you should be deployed!
+
+//Home will show everyone's feed set on public
+    //be able to click on them and show the personal view of that journal and be able to go back to feed
+//Profile will show personal journals public or private
+    //able to delete them from the list or change from private to public?
+//specific view shows specific journal withh all details
+    //if public, be able to add comments to them?
+    //able to edit privacy?
+    //able to delete
+    //able to share?
+//forms: should show on view depending if edit or create
+//messages: if have time, set up socket for chat to each other who's online

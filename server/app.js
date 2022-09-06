@@ -6,7 +6,9 @@ module.exports = app
 
 // logging middleware
 app.use(morgan('dev'))
-
+//to let images pass 2mb upload, forcing limit to be 50mb
+app.use(express.json({limit: '50mb'}));
+app.use(express.urlencoded({limit: '50mb'}));
 // body parsing middleware
 app.use(express.json())
 

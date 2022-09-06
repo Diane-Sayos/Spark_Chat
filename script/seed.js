@@ -1,7 +1,6 @@
 'use strict'
 
-const {db, models: {User} } = require('../server/db')
-
+const {db, models: {User, Journal} } = require('../server/db')
 /**
  * seed - this function clears the database, updates tables to
  *      match the models, and populates the database.
@@ -12,17 +11,43 @@ async function seed() {
 
   // Creating Users
   const users = await Promise.all([
-    User.create({ username: 'cody', password: '123' }),
-    User.create({ username: 'murphy', password: '123' }),
+    User.create({ username: 'cody', password: '123', firstName: 'Cody', lastName: 'Adams'}),
+    User.create({ username: 'murphy', password: '123', firstName: 'Murphy', lastName: 'Matthews'}),
+    User.create({username: 'didi', password: 'didi', firstName: 'Didi', lastName: 'Daniels'})
   ])
+  const journals = await Promise.all([
+    Journal.create({
+      title:'Times Square Adventure',
+      description: 'Times Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square Adventure',
+      date: '2022-08-05',
+      userId: 1,
+      isPrivate: false
+    }),
+    Journal.create({
+      title:'Central Park Adventure',
+      description: 'Times Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square Adventure',
+      date: '2202-07-30',
+      userId: 1,
+      isPrivate: false
+    }),
+    Journal.create({
+      title:'Brooklyn Bridge',
+      description: 'Times Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square Adventure',
+      date: '2202-07-30',
+      userId: 2,
+      isPrivate: false
+    }),
 
+  ])
   console.log(`seeded ${users.length} users`)
   console.log(`seeded successfully`)
   return {
     users: {
       cody: users[0],
-      murphy: users[1]
-    }
+      murphy: users[1],
+      didi: users[2]
+    },
+    journals
   }
 }
 

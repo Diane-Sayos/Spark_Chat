@@ -1,5 +1,8 @@
-body {
-  font-family: sans-serif;
+html {
+  margin: 2rem;
+  font-family: 'Quicksand', sans-serif;
+  text-align: center;
+  cursor: pointer;
 }
 
 a {
@@ -10,12 +13,24 @@ label {
   display: block;
 }
 
+li {
+  list-style-type: none;
+}
 nav a {
   display: inline-block;
   margin: 1em;
 }
 
-form div {
+form {
+  display: flex;
+  flex-direction: column;
   margin: 1em;
-  display: inline-block;
+}
+form > input, form > textarea, form > select, form > button {
+  margin: 5px;
+}
+@media (max-width: 500px){
+  .staff-profile {
+  width: 100%;
+  }
 }
