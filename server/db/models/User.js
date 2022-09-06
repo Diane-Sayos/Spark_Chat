@@ -16,11 +16,11 @@ const User = db.define('user', {
   },
   firstName: {
     type: Sequelize.STRING,
-    allowNull: false
+    // allowNull: false
   },
   lastName: {
     type: Sequelize.STRING,
-    allowNull: false
+    // allowNull: false
   },
   image: {
     type: Sequelize.TEXT
@@ -46,27 +46,23 @@ User.prototype.correctPassword = function(candidatePwd) {
 User.prototype.generateToken = function() {
   return jwt.sign({id: this.id}, process.env.JWT)
 }
-//get all public journals set to public including users
-User.prototype.getPublicJournals = async function(){
-  const publicJournals = await db.models.journal.findAll({
-    where: {
-      isPrivate: false
-    },
-    include: User
-  })
-  return publicJournals;
-};
+// //get all public journals set to public including users
+// User.prototype.getPublicJournals = async function(){
+//   const publicJournals = await db.models.journal.findAll({
+//     where: {
+//       isPrivate: false
+//     },
+//     include: User
+//   })
+//   return publicJournals;
+// };
 //get all journals owned by user
 User.prototype.getJournals = async function(){
   let journals = await db.models.journal.findAll({
     where: {
-      userId: this.id
+      isPrivate: false
     },
-    include: [
-      {
-        model: db.models.image
-      }
-    ],
+    include: [{model: db.models.image}, {model: User}]
   });
   return journals;
 };
@@ -76,11 +72,7 @@ User.prototype.addJournal = async function(journal){
 };
 //get all images
 User.prototype.getImages = async function(){
-  let images = await db.models.image.findAll({
-    where: {
-      userId: this.id
-    }
-  })
+  let images = await db.models.image.findAll()
   return images;
 };
 //add an image

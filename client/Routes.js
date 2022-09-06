@@ -1,10 +1,10 @@
-import React, {Component, Fragment} from 'react'
+import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {withRouter, Route, Switch, Redirect} from 'react-router-dom'
+import {withRouter, Route, Switch } from 'react-router-dom'
 import { Login, Signup } from './components/AuthForm';
 import Home from './components/Home';
-import {me, fetchJournals, fetchImages, fetchPublicJournals} from './store'
-import JournalEntries from './components/JournalEntries';
+import {me, fetchJournals, fetchImages } from './store'
+import JournalEntries from './components/Profile';
 import JournalForm from './components/JournalForm';
 import ImageForm from './components/ImageForm';
 import JournalSpecificView from './components/JournalSpecificView';
@@ -28,8 +28,8 @@ class Routes extends Component {
         {isLoggedIn ? (
           <div>
             <Route exact path="/home" component={Home} />
-            <Route exact path='/journals' component={JournalEntries} />
             <Route exact path='/journals' component={JournalForm} />
+            <Route exact path='/journals' component={JournalEntries} />
             <Route exact path='/journals/:id' component={JournalSpecificView} />
             <Route exact path='/journals/:id' component={ImageForm} />
           </div>
@@ -64,7 +64,6 @@ const mapDispatch = dispatch => {
     loadData: () => {
       dispatch(fetchJournals())
       dispatch(fetchImages())
-      dispatch(fetchPublicJournals())
     }
   }
 }

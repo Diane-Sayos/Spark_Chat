@@ -1,7 +1,7 @@
 const router = require('express').Router()
 const { isLoggedIn } = require('../middleware');
 module.exports = router
-//get all journals owned by logged-in user
+//get all journals
 router.get('/', isLoggedIn, async (req, res, next) => {
   try {
     res.send( await req.user.getJournals())

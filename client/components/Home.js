@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 //main feed with everyone's journal set on public?
 
 export const Home = ({username, auth, publicJournals})=> {
+  console.log(publicJournals[2])
   return (
     <section>
       <JournalForm />
@@ -12,12 +13,27 @@ export const Home = ({username, auth, publicJournals})=> {
         {
           publicJournals.map(journal => {
             return (
-              <li key={ journal.id }>
-                <h3><Link to={`/journals/${journal.id}`}>{ journal.title }</Link></h3>
-                <p><Link to={`/profile/${journal.user.userId}`}>{ journal.user.fullName }</Link></p>
-                <p>{ journal.description }</p>
-                <p>{ journal.date } | </p>
-
+              <li className='post' key={ journal.id }>
+                <div className='post-user'>
+                  <img className='avatar' src={journal.user.image || null} width='20' height='20'/>
+                  <Link to={`/profile/${journal.user.id}`}>{journal.user.fullName}</Link>
+                  <p>{ journal.date }</p>
+                </div>
+                <div className='post-info'>
+                  <Link to={`/journals/${journal.id}`}>{ journal.title }</Link><br />
+                  <p>{ journal.description }</p>
+                </div>
+                <ul className='post-images'>
+                  {
+                    journal.images.map(image => {
+                      return (
+                        <li key={image.id}>
+                          <img src={image.imageUrl}/>
+                        </li>
+                      )
+                    })
+                  }
+                </ul>
               </li>
             )
           })
@@ -32,10 +48,11 @@ export const Home = ({username, auth, publicJournals})=> {
  * CONTAINER
  */
 const mapState = state => {
+  const publicJournals = state.journals.filter(journal => journal.isPrivate === false) || {};
   return {
     username: state.auth.username,
     auth: state.auth,
-    publicJournals: state.publicJournals
+    publicJournals
   }
 };
 const mapDispatch = dispatch => {

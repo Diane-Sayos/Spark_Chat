@@ -1,6 +1,6 @@
 'use strict'
-
-const {db, models: {User, Journal} } = require('../server/db')
+const { faker } = require('@faker-js/faker');
+const {db, models: {User, Journal, Image } } = require('../server/db')
 /**
  * seed - this function clears the database, updates tables to
  *      match the models, and populates the database.
@@ -11,9 +11,9 @@ async function seed() {
 
   // Creating Users
   const users = await Promise.all([
-    User.create({ username: 'cody', password: '123', firstName: 'Cody', lastName: 'Adams'}),
-    User.create({ username: 'murphy', password: '123', firstName: 'Murphy', lastName: 'Matthews'}),
-    User.create({username: 'didi', password: 'didi', firstName: 'Didi', lastName: 'Daniels'})
+    User.create({ username: 'cody', password: '123', firstName: 'Cody', lastName: 'Adams', image: faker.image.avatar()}),
+    User.create({ username: 'murphy', password: '123', firstName: 'Murphy', lastName: 'Matthews', image: faker.image.avatar()}),
+    User.create({username: 'didi', password: 'didi', firstName: 'Didi', lastName: 'Daniels', image: faker.image.avatar()})
   ])
   const journals = await Promise.all([
     Journal.create({
@@ -37,6 +37,34 @@ async function seed() {
       userId: 2,
       isPrivate: false
     }),
+    Journal.create({
+      title:'Brooklyn',
+      description: 'Times Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square Adventure',
+      date: '2202-07-30',
+      userId: 3,
+      isPrivate: false
+    })
+  ])
+  const images = await Promise.all([
+    Image.create({imageUrl: faker.image.food(100, 100, true), userId: 1, journalId: 1}),
+    Image.create({imageUrl: faker.image.food(100, 100, true), userId: 1, journalId: 1}),
+    Image.create({imageUrl: faker.image.food(100, 100, true), userId: 1, journalId: 2}),
+    Image.create({imageUrl: faker.image.food(100, 100, true), userId: 1, journalId: 1}),
+    Image.create({imageUrl: faker.image.food(100, 100, true), userId: 2, journalId: 1}),
+    Image.create({imageUrl: faker.image.food(100, 100, true), userId: 2, journalId: 2}),
+    Image.create({imageUrl: faker.image.food(100, 100, true), userId: 2, journalId: 1}),
+    Image.create({imageUrl: faker.image.food(100, 100, true), userId: 2, journalId: 2}),
+    Image.create({imageUrl: faker.image.food(100, 100, true), userId: 1, journalId: 1}),
+    Image.create({imageUrl: faker.image.food(100, 100, true), userId: 1, journalId: 1}),
+    Image.create({imageUrl: faker.image.food(100, 100, true), userId: 3, journalId: 3}),
+    Image.create({imageUrl: faker.image.food(100, 100, true), userId: 3, journalId: 3}),
+    Image.create({imageUrl: faker.image.food(100, 100, true), userId: 3, journalId: 3}),
+    Image.create({imageUrl: faker.image.food(100, 100, true), userId: 3, journalId: 3}),
+    Image.create({imageUrl: faker.image.food(100, 100, true), userId: 1, journalId: 3}),
+    Image.create({imageUrl: faker.image.food(100, 100, true), userId: 1, journalId: 2}),
+    Image.create({imageUrl: faker.image.food(100, 100, true), userId: 1, journalId: 2}),
+    Image.create({imageUrl: faker.image.food(100, 100, true), userId: 1, journalId: 2}),
+    Image.create({imageUrl: faker.image.food(100, 100, true), userId: 1, journalId: 1}),
 
   ])
   console.log(`seeded ${users.length} users`)

@@ -3,29 +3,130 @@ html {
   font-family: 'Quicksand', sans-serif;
   text-align: center;
   cursor: pointer;
+  background-color: whitesmoke;
 }
 
 a {
   text-decoration: none;
 }
 
+ul {
+  padding: 0;
+  margin: 1em;
+}
+li {
+  list-style-type: none;
+}
 label {
   display: block;
 }
 
-li {
-  list-style-type: none;
-}
+/* HEADER */
+
 nav a {
   display: inline-block;
   margin: 1em;
 }
 
+/* HOME COMPONENT */
+
+/* post is li */
+.post {
+  margin: 0;
+  background-color: white;
+  position: relative;
+}
+/* avatar | user | date */
+.post-user {
+  text-align: left;
+}
+.post-user > a {
+  font-size: 15px;
+}
+.post-user > p {
+  font-size: 8px;
+  margin: 2px;
+}
+/* description on post */
+.post-info > p {
+  margin: 2px;
+}
+/* ul - images list */
+.post-images {
+  display: flex;
+  flex-flow: row wrap;
+  width: 100%;
+  margin: 2px;
+}
+.post-images > li {
+  margin: 5px;
+}
+/* avatar is the image on pos */
+.avatar {
+  border-radius: 50%;
+}
+
+/* SPECIFIC POST VIEW */
+
+/* specific view section */
+.specific-post {}
+/* .specific-post > ul {
+  display: flex;
+  flex-flow: row wrap;
+  margin: 1em;
+}
+.specific-post > ul > li {
+  margin: 10px;
+} */
+
+
+.container {
+  display: flex;
+  width: 100%;
+  padding: 4% 2%;
+  box-sizing: border-box;
+  height: 50vh;
+}
+
+.box {
+  flex: 1;
+  overflow: hidden;
+  transition: 0.5s;
+  margin: 0 0.5%;
+  box-shadow: 0 20px 30px rgba(0, 0, 0, 0.1);
+  line-height: 0;
+}
+
+.box > img {
+  width: 200%;
+  height: calc(100% - 5vh);
+  object-fit: cover;
+  transition: 0.5s;
+}
+
+.box > div {
+
+  display: block;
+  text-align: center;
+  height: 10vh;
+  line-height: 1;
+}
+
+.box:hover {
+  flex: 1 1 50%;
+}
+.box:hover > img {
+  width: 100%;
+  height: 100%;
+}
+
+ 
 form {
   display: flex;
   flex-direction: column;
   margin: 1em;
 }
+
 form > input, form > textarea, form > select, form > button {
   margin: 5px;
 }

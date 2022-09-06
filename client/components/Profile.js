@@ -5,10 +5,9 @@ import { Link } from 'react-router-dom';
 const JournalEntries = ({ journals, auth }) => {
     return (
         <section>
-            { auth.image }
-            { auth.firstName }
-            { auth.lastName }
-            {/* create journal form */}
+            <img src={ auth.image || null} />
+            <h2>{ auth.firstName } { auth.lastName }</h2>
+            <button>Send Message</button>
             <ul>
                 {
                     journals.map(journal => {
@@ -25,9 +24,11 @@ const JournalEntries = ({ journals, auth }) => {
     )
 };
 const mapState = state => {
+    const auth = state.auth;
+    const journals = state.journals.filter(journal => journal.userId === auth.id);
     return {
-        journals: state.journals,
-        auth: state.auth
+        journals,
+        auth
     }
 };
 const mapDispatch = dispatch => {
