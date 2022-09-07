@@ -18,7 +18,6 @@ export const fetchImages = () => {
                 authorization: window.localStorage.getItem('token')
             }
         })).data;
-        console.log(images)
         dispatch({type: 'SET_IMAGES', images});
     }
 };
@@ -34,7 +33,6 @@ export const addImage = (image, authId, journalId) => {
                 authorization: window.localStorage.getItem('token')
             }
         })).data;
-        console.log(image)
         dispatch({type: 'ADD_IMAGE', image})
     }
 };

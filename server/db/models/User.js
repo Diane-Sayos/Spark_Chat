@@ -46,30 +46,36 @@ User.prototype.correctPassword = function(candidatePwd) {
 User.prototype.generateToken = function() {
   return jwt.sign({id: this.id}, process.env.JWT)
 }
-// //get all public journals set to public including users
-// User.prototype.getPublicJournals = async function(){
-//   const publicJournals = await db.models.journal.findAll({
-//     where: {
-//       isPrivate: false
-//     },
-//     include: User
-//   })
-//   return publicJournals;
-// };
-//get all journals owned by user
+//get all journals
 User.prototype.getJournals = async function(){
   let journals = await db.models.journal.findAll({
-    where: {
-      isPrivate: false
-    },
-    include: [{model: db.models.image}, {model: User}]
+    include: [{model: db.models.image}, {model: User}],
+    order: [['id', 'DESC']]
+
   });
   return journals;
 };
+User.prototype.getJournal = async function(journalBody){
+  let journal = await db.models.journal.findOne({
+    where: {
+      id: journalBody.id,
+      userId: this.id
+    },
+    include: [{model: db.models.image},{model: User}]
+  });
+  return journal;
+}
 //create a journal without image
 User.prototype.addJournal = async function(journal){
-  return (await db.models.journal.create(journal));
+  journal = await db.models.journal.create(journal);
+  return this.getJournal(journal);
 };
+//update journal
+User.prototype.updateJournal = async function(journalBody){
+  let journal = await db.models.journal.findByPk(journalBody.id);
+  journal = await journal.update(journalBody);
+  return this.getJournal(journal);
+}
 //get all images
 User.prototype.getImages = async function(){
   let images = await db.models.image.findAll()

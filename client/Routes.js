@@ -4,9 +4,7 @@ import {withRouter, Route, Switch } from 'react-router-dom'
 import { Login, Signup } from './components/AuthForm';
 import Home from './components/Home';
 import {me, fetchJournals, fetchImages } from './store'
-import JournalEntries from './components/Profile';
-import JournalForm from './components/JournalForm';
-import ImageForm from './components/ImageForm';
+import Profile from './components/Profile';
 import JournalSpecificView from './components/JournalSpecificView';
 /**
  * COMPONENT
@@ -28,10 +26,8 @@ class Routes extends Component {
         {isLoggedIn ? (
           <div>
             <Route exact path="/home" component={Home} />
-            <Route exact path='/journals' component={JournalForm} />
-            <Route exact path='/journals' component={JournalEntries} />
+            <Route exact path='/profile' component={Profile} />
             <Route exact path='/journals/:id' component={JournalSpecificView} />
-            <Route exact path='/journals/:id' component={ImageForm} />
           </div>
         ) : (
           <Switch>

@@ -6,7 +6,7 @@ const Journal = db.define('journal', {
         type: Sequelize.STRING
     },
     date: {
-        type: Sequelize.DATE,
+        type: Sequelize.DATEONLY,
         defaultValue: Sequelize.DataTypes.NOW
     },
     description: {

@@ -1,44 +1,47 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { deleteImage } from '../store';
+import JournalForm from './JournalForm';
+import ImageForm from './ImageForm';
 
-const JournalSpecificView = ({ journal, images, deleteImage }) => {
-    const user = journal.user;
-    console.log(user)
-    const allImages = journal.images;
-    console.log(images)
+const JournalSpecificView = ({ journal, images, deleteImage, auth }) => {
     return (
         <section className='specific-post'>
-            <div className='container'>
-            {
-                images.map(image => {
-                    return (
-                        <div className='box' key={image.id}>
-                            <img src={image.imageUrl}/>
-                            <div>
-                                <button>Share Image</button>
-                                <button onClick={() => deleteImage(image)}>Remove Image</button>
+            { images ? 
+                <div className='container'>
+                {
+                    images.map(image => {
+                        return (
+                            <div className='box' key={image.id}>
+                                <img src={image.imageUrl}/>
+                                {image.userId === auth.id ? 
+                                <div>
+                                    <button>Share Image</button>
+                                    <button onClick={() => deleteImage(image)}>Remove Image</button>
+                                </div> : null}
                             </div>
-                        </div>
-                    )
-                })
-            }
-            </div>
+                        )
+                    })
+                }
+                </div>
+            :null}
             <h2>{journal.title}</h2>
+            {journal.user ? <p>{journal.user.fullName}</p> : null}
             <p>{journal.date}</p>
             <p>{journal.description}</p>
-            {/* Maybe have a dropdown saying if its either private or public post? */}
-            <button>Private?</button>
-            {/* Edit button that will show the edit form */}
-            <button>Edit</button>
-            {/* delete button that will delete post and redirect back to feed */}
-            <button>Delete Post</button>
+            {
+                journal.userId === auth.id ? 
+                <div>
+                    <JournalForm />
+                    <ImageForm />
+                </div> : null
+            }
         </section>
     )
 };
 const mapState = (state, {match})=> {
     const journal = state.journals.find(journal => journal.id === match.params.id*1) || {};
-    const images = state.images.filter(image => image.journalId === journal.id*1) || [];
+    const images = state.images.filter(image => image.journalId === journal.id && image.userId === journal.userId) || [];
     return {
         journal,
         images,

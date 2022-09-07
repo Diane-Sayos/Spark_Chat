@@ -41,7 +41,7 @@ class ImageForm extends React.Component {
                         onChange={ onChangeImage }
                     />
                 </label>
-                <ul>
+                <ul className='form-images-display'>
                 {
                     images.map(image => {
                         return (
@@ -58,7 +58,7 @@ class ImageForm extends React.Component {
     }
 };
 const mapState = (state, { match }) => {
-    const journal = state.journals.find(journal => journal.id === match.params.id*1) || {};
+    const journal = state.journals.find(journal => journal.id === match?.params.id*1) || {};
     return {
         journal,
         auth: state.auth

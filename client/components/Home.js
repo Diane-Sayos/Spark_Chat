@@ -1,10 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
-import JournalForm from './JournalForm';
+import JournalForm from './JournalForm';2
 import { Link } from 'react-router-dom';
-//main feed with everyone's journal set on public?
 
-export const Home = ({username, auth, publicJournals})=> {
+export const Home = ({publicJournals})=> {
   console.log(publicJournals[2])
   return (
     <section>
@@ -15,7 +14,7 @@ export const Home = ({username, auth, publicJournals})=> {
             return (
               <li className='post' key={ journal.id }>
                 <div className='post-user'>
-                  <img className='avatar' src={journal.user.image || null} width='20' height='20'/>
+                  { journal.user.image ? <img className='avatar' src={journal.user.image || null} width='20' height='20'/> : null}
                   <Link to={`/profile/${journal.user.id}`}>{journal.user.fullName}</Link>
                   <p>{ journal.date }</p>
                 </div>
@@ -25,13 +24,13 @@ export const Home = ({username, auth, publicJournals})=> {
                 </div>
                 <ul className='post-images'>
                   {
-                    journal.images.map(image => {
+                    journal.images.length ? journal.images.map(image => {
                       return (
                         <li key={image.id}>
-                          <img src={image.imageUrl}/>
+                          <img src={image.imageUrl} width='100' height='100'/>
                         </li>
                       )
-                    })
+                    }):null
                   }
                 </ul>
               </li>
@@ -50,18 +49,7 @@ export const Home = ({username, auth, publicJournals})=> {
 const mapState = state => {
   const publicJournals = state.journals.filter(journal => journal.isPrivate === false) || {};
   return {
-    username: state.auth.username,
-    auth: state.auth,
     publicJournals
   }
 };
-const mapDispatch = dispatch => {
-  return {
-    
-  }
-}
-export default connect(mapState, mapDispatch)(Home)
-// const countryCodes = Object.keys(countries.countries);
-// const countryNames = countryCodes.map(code => countries.countries[code]);
-// console.log(countryNames)
-// console.log(countryCodes)
+export default connect(mapState)(Home)

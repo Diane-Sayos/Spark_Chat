@@ -26,45 +26,45 @@ async function seed() {
     Journal.create({
       title:'Central Park Adventure',
       description: 'Times Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square Adventure',
-      date: '2202-07-30',
+      date: '2202-08-30',
       userId: 1,
       isPrivate: false
     }),
     Journal.create({
       title:'Brooklyn Bridge',
       description: 'Times Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square Adventure',
-      date: '2202-07-30',
+      date: '2202-06-30',
       userId: 2,
       isPrivate: false
     }),
     Journal.create({
       title:'Brooklyn',
       description: 'Times Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square Adventure',
-      date: '2202-07-30',
+      date: '2202-05-30',
       userId: 3,
       isPrivate: false
     })
   ])
-  const images = await Promise.all([
-    Image.create({imageUrl: faker.image.food(100, 100, true), userId: 1, journalId: 1}),
-    Image.create({imageUrl: faker.image.food(100, 100, true), userId: 1, journalId: 1}),
-    Image.create({imageUrl: faker.image.food(100, 100, true), userId: 1, journalId: 2}),
-    Image.create({imageUrl: faker.image.food(100, 100, true), userId: 1, journalId: 1}),
-    Image.create({imageUrl: faker.image.food(100, 100, true), userId: 2, journalId: 1}),
-    Image.create({imageUrl: faker.image.food(100, 100, true), userId: 2, journalId: 2}),
-    Image.create({imageUrl: faker.image.food(100, 100, true), userId: 2, journalId: 1}),
-    Image.create({imageUrl: faker.image.food(100, 100, true), userId: 2, journalId: 2}),
-    Image.create({imageUrl: faker.image.food(100, 100, true), userId: 1, journalId: 1}),
-    Image.create({imageUrl: faker.image.food(100, 100, true), userId: 1, journalId: 1}),
-    Image.create({imageUrl: faker.image.food(100, 100, true), userId: 3, journalId: 3}),
-    Image.create({imageUrl: faker.image.food(100, 100, true), userId: 3, journalId: 3}),
-    Image.create({imageUrl: faker.image.food(100, 100, true), userId: 3, journalId: 3}),
-    Image.create({imageUrl: faker.image.food(100, 100, true), userId: 3, journalId: 3}),
-    Image.create({imageUrl: faker.image.food(100, 100, true), userId: 1, journalId: 3}),
-    Image.create({imageUrl: faker.image.food(100, 100, true), userId: 1, journalId: 2}),
-    Image.create({imageUrl: faker.image.food(100, 100, true), userId: 1, journalId: 2}),
-    Image.create({imageUrl: faker.image.food(100, 100, true), userId: 1, journalId: 2}),
-    Image.create({imageUrl: faker.image.food(100, 100, true), userId: 1, journalId: 1}),
+  await Promise.all([
+    Image.create({imageUrl: faker.image.food(360, 240, true), userId: 1, journalId: 1}),
+    Image.create({imageUrl: faker.image.food(360, 240, true), userId: 1, journalId: 1}),
+    Image.create({imageUrl: faker.image.food(360, 240, true), userId: 1, journalId: 2}),
+    Image.create({imageUrl: faker.image.food(360, 240, true), userId: 1, journalId: 2}),
+    Image.create({imageUrl: faker.image.food(360, 240, true), userId: 2, journalId: 3}),
+    Image.create({imageUrl: faker.image.food(360, 240, true), userId: 2, journalId: 3}),
+    Image.create({imageUrl: faker.image.food(360, 240, true), userId: 2, journalId: 3}),
+    Image.create({imageUrl: faker.image.food(360, 240, true), userId: 2, journalId: 3}),
+    Image.create({imageUrl: faker.image.food(360, 240, true), userId: 1, journalId: 2}),
+    Image.create({imageUrl: faker.image.food(360, 240, true), userId: 1, journalId: 2}),
+    Image.create({imageUrl: faker.image.food(360, 240, true), userId: 3, journalId: 4}),
+    Image.create({imageUrl: faker.image.food(360, 240, true), userId: 3, journalId: 4}),
+    Image.create({imageUrl: faker.image.food(360, 240, true), userId: 3, journalId: 4}),
+    Image.create({imageUrl: faker.image.food(360, 240, true), userId: 3, journalId: 4}),
+    Image.create({imageUrl: faker.image.food(360, 240, true), userId: 1, journalId: 2}),
+    Image.create({imageUrl: faker.image.food(360, 240, true), userId: 1, journalId: 2}),
+    Image.create({imageUrl: faker.image.food(360, 240, true), userId: 2, journalId: 3}),
+    Image.create({imageUrl: faker.image.food(360, 240, true), userId: 2, journalId: 3}),
+    Image.create({imageUrl: faker.image.food(360, 240, true), userId: 2, journalId: 3}),
 
   ])
   console.log(`seeded ${users.length} users`)
