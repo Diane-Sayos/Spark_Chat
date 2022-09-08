@@ -3,9 +3,12 @@ import {connect} from 'react-redux'
 import {withRouter, Route, Switch } from 'react-router-dom'
 import { Login, Signup } from './components/AuthForm';
 import Home from './components/Home';
-import {me, fetchJournals, fetchImages } from './store'
+import {me, fetchJournals, fetchImages, fetchUsers } from './store'
 import Profile from './components/Profile';
 import JournalSpecificView from './components/JournalSpecificView';
+import JournalForm from './components/JournalForm';
+import ImageForm from './components/ImageForm';
+import UpdateJournalForm from './components/UpdateJournalForm';
 /**
  * COMPONENT
  */
@@ -22,12 +25,15 @@ class Routes extends Component {
     const {isLoggedIn} = this.props
 
     return (
-      <div className='main'>
+      <div id='main-app'>
         {isLoggedIn ? (
           <div>
             <Route exact path="/home" component={Home} />
-            <Route exact path='/profile' component={Profile} />
+            <Route exact path='/profile/:id' component={Profile} />
+            <Route exact path='/journals' component={JournalForm} />
             <Route exact path='/journals/:id' component={JournalSpecificView} />
+            <Route exact path='/journals/:id' component={UpdateJournalForm} />
+            <Route exact path='/journals/:id' component={ImageForm} />
           </div>
         ) : (
           <Switch>
@@ -60,6 +66,7 @@ const mapDispatch = dispatch => {
     loadData: () => {
       dispatch(fetchJournals())
       dispatch(fetchImages())
+      dispatch(fetchUsers())
     }
   }
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import JournalForm from './JournalForm';2
+import JournalForm from './JournalForm';
 import { Link } from 'react-router-dom';
 
 export const Home = ({publicJournals})=> {

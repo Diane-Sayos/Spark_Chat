@@ -19,28 +19,28 @@ async function seed() {
     Journal.create({
       title:'Times Square Adventure',
       description: 'Times Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square Adventure',
-      date: '2022-08-05',
+      date: new Date('2202-06-30'),
       userId: 1,
       isPrivate: false
     }),
     Journal.create({
       title:'Central Park Adventure',
       description: 'Times Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square Adventure',
-      date: '2202-08-30',
+      date: new Date('2202-05-30'),
       userId: 1,
       isPrivate: false
     }),
     Journal.create({
       title:'Brooklyn Bridge',
       description: 'Times Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square Adventure',
-      date: '2202-06-30',
+      date: new Date('2202-07-30'),
       userId: 2,
       isPrivate: false
     }),
     Journal.create({
       title:'Brooklyn',
       description: 'Times Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square Adventure',
-      date: '2202-05-30',
+      date: new Date('2202-08-30'),
       userId: 3,
       isPrivate: false
     })

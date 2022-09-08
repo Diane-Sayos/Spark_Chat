@@ -1,12 +1,23 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { deleteImage } from '../store';
-import JournalForm from './JournalForm';
+import { deleteImage, addImage } from '../store';
 import ImageForm from './ImageForm';
 
-const JournalSpecificView = ({ journal, images, deleteImage, auth }) => {
+const JournalSpecificView = ({ journal, images, deleteImage, auth, addImage }) => {
+    const openPostForm = () => {
+        document.getElementById("main-app").style.marginRight = '350px';
+        document.getElementById("journal-form").style.width = '300px';
+    }
+    const openImageForm = () => {
+        document.getElementById("main-app").style.marginRight = '350px';
+        document.getElementById("image-form").style.width = '300px';
+    }
     return (
-        <section className='specific-post'>
+        <section  className='main' id="specific-post">
+            <p className='date'>{journal.date}</p>
+            {journal.user ? <p className='author'> by {journal.user.fullName}</p> : null}
+            <h2>{journal.title}</h2>
+
             { images ? 
                 <div className='container'>
                 {
@@ -16,7 +27,6 @@ const JournalSpecificView = ({ journal, images, deleteImage, auth }) => {
                                 <img src={image.imageUrl}/>
                                 {image.userId === auth.id ? 
                                 <div>
-                                    <button>Share Image</button>
                                     <button onClick={() => deleteImage(image)}>Remove Image</button>
                                 </div> : null}
                             </div>
@@ -25,15 +35,15 @@ const JournalSpecificView = ({ journal, images, deleteImage, auth }) => {
                 }
                 </div>
             :null}
-            <h2>{journal.title}</h2>
-            {journal.user ? <p>{journal.user.fullName}</p> : null}
-            <p>{journal.date}</p>
+
+
             <p>{journal.description}</p>
             {
                 journal.userId === auth.id ? 
-                <div>
-                    <JournalForm />
-                    <ImageForm />
+                <div className='form-btn'>
+                    {/* <ImageForm journal={ journal} auth={auth} addImage={addImage}/> */}
+                    <button onClick={() => openPostForm()} className='openForm-btn'>&#9776; Edit Post</button>
+                    <button onClick={() => openImageForm()} className='openForm-btn'>&#9776; Add Images</button>
                 </div> : null
             }
         </section>
@@ -52,8 +62,10 @@ const mapDispatch = dispatch => {
     return {
         deleteImage: (image) => {
             dispatch(deleteImage(image))
+        },
+        addImage: (image, authId, journalId) => {
+            dispatch(addImage(image, authId, journalId))
         }
     }
 };
 export default connect(mapState, mapDispatch)(JournalSpecificView);
-

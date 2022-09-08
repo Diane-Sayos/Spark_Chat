@@ -3,7 +3,7 @@ html {
   font-family: 'Quicksand', sans-serif;
   text-align: center;
   cursor: pointer;
-  background-color: whitesmoke;
+  background-color: white;
 }
 a {
   text-decoration: none;
@@ -20,12 +20,24 @@ label {
 }
 
 /* HEADER */
-
 nav a {
   display: inline-block;
   margin: 1em;
 }
+/* .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 20px;
+  margin-top: 50px;
+} */
+/* ROUTE COMPONENT */
 
+#main-app {
+  transition: margin-right 0.5s;
+  /* If you want a transition effect */
+  padding: 20px;
+}
 /* HOME COMPONENT */
 
 /* post is li */
@@ -34,6 +46,7 @@ nav a {
   padding: 1em;
   background-color: white;
   position: relative;
+  box-shadow: 3px 3px 2px 3px #888888;
 }
 /* avatar | user | date */
 .post-user {
@@ -64,7 +77,12 @@ nav a {
 .avatar {
   border-radius: 50%;
 }
-
+.date {
+  float: right;
+}
+.author {
+  float: left;
+}
 /* SPECIFIC POST VIEW */
 
 /* images container */
@@ -115,7 +133,26 @@ nav a {
   margin: 2px;
 }
  /* FORMS VIEW */
-
+ #journal-form, #image-form {
+  height: 100%;
+  /* 100% Full-height */
+  width: 0;
+  /* 0 width - change this with JavaScript */
+  position: fixed;
+  /* Stay in place */
+  z-index: 1;
+  /* Stay on top */
+  top: 150px;
+  right: 0;
+  background-color: whitesmoke;
+  /* Black*/
+  overflow-x: hidden;
+  /* Disable horizontal scroll */
+  padding-top: 60px;
+  /* Place content 60px from the top */
+  transition: 0.5s;
+  /* 0.5 second transition effect to slide in the sidebar */
+}
 form {
   display: flex;
   flex-direction: column;
