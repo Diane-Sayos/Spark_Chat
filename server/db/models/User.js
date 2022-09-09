@@ -71,9 +71,16 @@ User.prototype.addJournal = async function(journal){
   return this.getJournal(journal);
 };
 //update journal
-User.prototype.updateJournal = async function(journalBody){
-  let journal = await db.models.journal.findByPk(journalBody.id);
-  journal = await journal.update(journalBody);
+User.prototype.updateJournal = async function(journalBody, id){
+  let journal = await db.models.journal.findOne({
+    where: {
+      id: id*1,
+      userId: this.id
+    }
+  })
+  if(journal){
+    journal = await journal.update(journalBody);
+  }
   return this.getJournal(journal);
 }
 //get all images
@@ -118,7 +125,10 @@ User.findByToken = async function(token) {
     throw error
   }
 }
-
+User.prototype.updateUser = async function(data){
+  const user = await User.findByPk(this.id);
+  return (user.update(data));
+}
 /**
  * hooks
  */

@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {withRouter, Route, Switch } from 'react-router-dom'
-import { Login, Signup } from './components/AuthForm';
+import { Login } from './components/AuthForm';
 import Home from './components/Home';
 import {me, fetchJournals, fetchImages, fetchUsers } from './store'
 import Profile from './components/Profile';
@@ -9,6 +9,9 @@ import JournalSpecificView from './components/JournalSpecificView';
 import JournalForm from './components/JournalForm';
 import ImageForm from './components/ImageForm';
 import UpdateJournalForm from './components/UpdateJournalForm';
+import { Signup } from './components/ProfileForm';
+import UpdateProfileForm from './components/UpdateProfileForm';
+import ImageProfileForm from './components/ImageProfileForm';
 /**
  * COMPONENT
  */
@@ -30,6 +33,8 @@ class Routes extends Component {
           <div>
             <Route exact path="/home" component={Home} />
             <Route exact path='/profile/:id' component={Profile} />
+            <Route exact path='/profile/:id' component={UpdateProfileForm} />
+            <Route exact path='/profile/:id' component={ImageProfileForm} />
             <Route exact path='/journals' component={JournalForm} />
             <Route exact path='/journals/:id' component={JournalSpecificView} />
             <Route exact path='/journals/:id' component={UpdateJournalForm} />

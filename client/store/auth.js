@@ -8,8 +8,7 @@ const TOKEN = 'token'
  */
 const SET_AUTH = 'SET_AUTH'
 
-/**
- * ACTION CREATORS
+/**sACTION CREATORS
  */
 const setAuth = auth => ({type: SET_AUTH, auth})
 
@@ -28,9 +27,15 @@ export const me = () => async dispatch => {
   }
 }
 
-export const authenticate = (username, password, method) => async dispatch => {
+export const authenticate = (user, method) => async dispatch => {
   try {
-    const res = await axios.post(`/auth/${method}`, {username, password})
+    const res = await axios.post(`/auth/${method}`, {
+      username: user.username,
+      password: user.password,
+      firstName: user.firstName,
+      lastName: user.lastName,
+      iamge: user.image
+    })
     window.localStorage.setItem(TOKEN, res.data.token)
     dispatch(me())
     history.push('/home');
@@ -47,7 +52,23 @@ export const logout = () => {
     auth: {}
   }
 }
-
+export const updateUser = (data) => {
+  return async(dispatch) => {
+    const auth = (await axios.put(`/auth/me`, {
+      firstName: data.firstName,
+      lastName: data.lastName,
+      username: data.username,
+      password: data.password,
+      image: data.image
+    },{
+      headers: {
+        authorization: window.localStorage.getItem('token')
+      }
+    })).data;
+    console.log(auth);
+    dispatch({type: SET_AUTH, auth});
+  }
+}
 /**
  * REDUCER
  */

@@ -21,7 +21,8 @@ router.post('/', isLoggedIn, async(req, res, next) => {
 //update journal without image
 router.put('/:id', isLoggedIn, async(req, res, next) => {
   try{
-    res.send(await req.user.updateJournal(req.body))
+    const id = req.params.id*1;
+    res.send(await req.user.updateJournal(req.body, id))
   }
   catch(ex){
     next(ex)

@@ -1,24 +1,22 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { addImage } from '../store';
-// const ImageForm = ({ journal, auth, addImage }) => {
-//     const [images, setImages] = useState([]);
+// const ImageProfileForm = ({ journal, auth, addImage }) => {
+//     const [image, setImage] = useState('');
 //     const onChangeImage = (e) => {
 //         console.log(e.target.files)
 //         const image = e.target.files[0];
 //         const reader = new FileReader();
 //         reader.addEventListener('load', () => {
-//             setImages([...images, reader.result])
+//             setImage(reader.result)
 //         });
 //         reader.readAsDataURL(image);
 //     }
 //     const handleSubmit = (e) => {
 //         e.preventDefault();
-//         console.log(images)
-//         images.map(image => {
-//             addImage(image, auth.id, journal.id)
-//         });
-//         setImages([]);
+//         console.log(image)
+//         addProfileImage(image, auth)
+//         setImage('');
 //     };
 //     return (
 //         <section>
@@ -26,25 +24,17 @@ import { addImage } from '../store';
 //                 <label>Image:<br />
 //                     <input
 //                         type='file'
-//                         multiple
 //                         onChange={ onChangeImage }
 //                     />
 //                 </label>
-//                 <ul className='form-images-display'>
-//                 {
-//                     images.map(image => {
-//                         return (
-//                             <li key={image}><img src={image? image : null} width='120' height='120'/></li>
-//                         )
-//                     })
-//                 }
-//                 </ul>
+//                 <img src={image? image : null} width='120' height='120'/>
 //                 <button type='submit'>Add Image</button>
-//                 <button onClick={() => setImages({images: []})}>Cancel</button>
+//                 <button onClick={() => setImage({image: ''})}>Cancel</button>
 //             </form>
 //         </section>
 //     )
 // };
+// export default ImageProfileForm;
 class ImageForm extends React.Component {
     constructor(){
         super()

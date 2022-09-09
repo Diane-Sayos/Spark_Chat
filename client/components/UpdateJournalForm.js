@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { addJournal, updateJournal }from '../store';
+import { updateJournal }from '../store';
 
 class UpdateJournalForm extends React.Component {
     constructor(){
@@ -15,6 +15,7 @@ class UpdateJournalForm extends React.Component {
         this.closeForm = this.closeForm.bind(this);
     }
     componentDidMount(){
+        console.log('will mount')
         if(this.props.journal.isPrivate === false){
             this.setState({
                 title: this.props.journal.title,
@@ -34,6 +35,7 @@ class UpdateJournalForm extends React.Component {
                 isPrivate: 0
             })
         }
+        console.log('did mount')
     };
     componentDidUpdate(prevProps){
         if(!prevProps.journal.id && this.props.journal.id){
@@ -43,18 +45,21 @@ class UpdateJournalForm extends React.Component {
                     description: this.props.journal.description,
                     isPrivate: 2
                 })
+                console.log('did update')
             } else if(this.props.journal.isPrivate === true){
                 this.setState({
                     title: this.props.journal.title,
                     description: this.props.journal.description,
                     isPrivate: 1
                 })
+                console.log('did update')
             } else {
                 this.setState({
                     title: this.props.journal.title,
                     description: this.props.journal.description,
                     isPrivate: 0
                 })
+                console.log('did update')
             }
         }
         if(prevProps.journal.id && !this.props.journal.id){
@@ -63,6 +68,7 @@ class UpdateJournalForm extends React.Component {
                 description: '',
                 isPrivate: 0
             })
+            console.log('did update')
         }
     }
     onChange = (e) => {
@@ -71,24 +77,11 @@ class UpdateJournalForm extends React.Component {
     handleSubmit = (e) => {
         e.preventDefault();
         const { isPrivate } = this.state;
-        if(this.props.journal.id){
-            if(isPrivate === '2'){
-                this.props.updateJournal({...this.state, isPrivate: false});
-            } else {
-                this.props.updateJournal({...this.state, isPrivate: true});
-            }
+        if(isPrivate === '2'){
+            this.props.updateJournal({...this.state, isPrivate: false}, this.props.auth, this.props.journal.id);
         } else {
-            if(isPrivate === '2'){
-                this.props.addJournal({...this.state, isPrivate: false}, this.props.auth);
-            } else {
-                this.props.addJournal({...this.state, isPrivate: true}, this.props.auth);
-            }
+            this.props.updateJournal({...this.state, isPrivate: true}, this.props.auth, this.props.journal.id);
         }
-        this.setState({
-            title: '',
-            description: '',
-            isPrivate: 0
-        })
     };
     closeForm(){
         document.getElementById("journal-form").style.width = '0';
@@ -97,8 +90,6 @@ class UpdateJournalForm extends React.Component {
     render(){
         const { onChange, handleSubmit, closeForm } = this;
         const { title, description, isPrivate } = this.state;
-        const { journal } = this.props;
-        console.log(isPrivate)
         return (
             <div className='sidebar' id="journal-form">
                 <form onSubmit={ handleSubmit }>
@@ -125,8 +116,8 @@ class UpdateJournalForm extends React.Component {
                         <option value={1}>Private</option>
                         <option value={2}>Public</option>
                     </select>
-                    <button type='submit'>{journal.id? 'Update Post' : 'Add Post'}</button>
-                    {journal.id? <button>Delete Post</button> : null}
+                    <button type='submit'>Update Post</button>
+                    <button>Delete Post</button>
                     <button className="closebtn" onClick={() => closeForm()}>Cancel</button>
                 </form>
             </div>
@@ -146,11 +137,8 @@ const mapState = (state, { match }) => {
 };
 const mapDispatch = dispatch => {
     return {
-        addJournal: (journal, auth) => {
-            dispatch(addJournal(journal, auth))
-        },
-        updateJournal: (journal) => {
-            dispatch(updateJournal(journal))
+        updateJournal: (journal, auth, id) => {
+            dispatch(updateJournal(journal, auth, id))
         }
     }
 };

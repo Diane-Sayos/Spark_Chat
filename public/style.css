@@ -133,7 +133,7 @@ nav a {
   margin: 2px;
 }
  /* FORMS VIEW */
- #journal-form, #image-form {
+ #journal-form, #image-form, #updateProfile-form, #imageProfile-form {
   height: 100%;
   /* 100% Full-height */
   width: 0;
@@ -144,7 +144,7 @@ nav a {
   /* Stay on top */
   top: 150px;
   right: 0;
-  background-color: whitesmoke;
+  background-color: white;
   /* Black*/
   overflow-x: hidden;
   /* Disable horizontal scroll */

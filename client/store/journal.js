@@ -1,5 +1,6 @@
 import axios from 'axios'
 import history from '../history'
+import auth from './auth';
 
 const journals = (state = [], action) => {
   if(action.type === 'SET_JOURNALS'){
@@ -43,18 +44,20 @@ export const addJournal = (journal, auth) => {
   }
 };
 //update journal
-export const updateJournal = (journal) => {
+export const updateJournal = (journal, auth, id) => {
+  console.log(journal)
   return async(dispatch) => {
-    journal = (await axios.put(`/journals/${journal.id}`, {
+    journal = (await axios.put(`/api/journals/${id}`, {
       title: journal.title,
       description: journal.description,
-      date: journal.date,
-      isPrivate: journal.isPrivate
-    }, {
+      isPrivate: journal.isPrivate,
+      userId: auth.id
+    },{
       headers: {
         authorization: window.localStorage.getItem('token')
       }
     })).data;
+    console.log(journal)
     dispatch({type: 'UPDATE_JOURNAL', journal});
   }
 };
