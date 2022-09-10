@@ -4,7 +4,6 @@ import JournalForm from './JournalForm';
 import { Link } from 'react-router-dom';
 
 export const Home = ({publicJournals})=> {
-  console.log(publicJournals[1])
   return (
     <section>
       <JournalForm />
@@ -14,7 +13,7 @@ export const Home = ({publicJournals})=> {
             return (
               <li className='post' key={ journal.id }>
                 <div className='post-user'>
-                  { journal.user.image ? <img className='avatar' src={journal.user.imageUrl} width='20' height='20'/> : null}
+                  { journal.user.image ? <img className='avatar' src={journal.user.image} width='20' height='20'/> : null}
                   <Link to={`/profile/${journal.user.id}`}>{journal.user.fullName}</Link>
                   <p>{ journal.date }</p>
                 </div>

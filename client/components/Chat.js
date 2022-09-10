@@ -35,7 +35,7 @@ const Chat = ({auth, user, messages, addMessage, deleteMessage}) => {
                                     {message.sender.fullName}< br/>
                                     <p className='chat-date'>{message.date}</p>
                                     <p className='chat'>{message.text}</p>
-                                    <button onClick={ () => deleteMessage(message)}>Unsend</button>
+                                    {/* <button onClick={ () => deleteMessage(message)}>Unsend</button> */}
                                 </div>:
                                 <div className='message-receiver'>
                                     <img src={message.sender.image} className='avatar' width='20' height='20' />
@@ -67,7 +67,6 @@ const Chat = ({auth, user, messages, addMessage, deleteMessage}) => {
 const mapState = (state, {match}) => {
     const user = state.users.find(user => user.id === match.params.id*1) || {};
     const messages = state.messages.filter(message => message.senderId === state.auth.id && message.receiverId === user.id || message.receiverId === state.auth.id && message.senderId === user.id) || [];
-    // const receivedMessages = state.messages.filter(message => ) || [];
     return {
         auth: state.auth,
         user,
