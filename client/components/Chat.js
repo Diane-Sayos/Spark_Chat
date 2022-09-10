@@ -21,7 +21,6 @@ const Chat = ({auth, user, messages, addMessage, deleteMessage}) => {
     }
     return (
         <section className='sidebar' id='chat-form'>
-        <button className="closeChat-btn" onClick={() => closeForm()}>Close Chat</button>
             <h2>{user.fullName}</h2>
             <hr />
             <ul>
@@ -61,6 +60,7 @@ const Chat = ({auth, user, messages, addMessage, deleteMessage}) => {
                 />
                 <button type='submit'>Send</button>
             </form>
+            <button className="closebtn" onClick={() => closeForm()}>Close Chat</button>
         </section>
     )
 };

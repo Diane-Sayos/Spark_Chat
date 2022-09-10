@@ -49,6 +49,7 @@ class Routes extends Component {
               <Route exact path='/profile/:id' component={Profile} />
                 <Route exact path='/profile/:id' component={UpdateProfileForm} />
                 <Route exact path='/profile/:id' component={ImageProfileForm} />
+                <Route exact path='/profile/:id' component={Chat} />
               <Route exact path='/journals/:id' component={JournalSpecificView} />
                 <Route exact path='/journals/:id' component={UpdateJournalForm} />
                 <Route exact path='/journals/:id' component={ImageForm} />
