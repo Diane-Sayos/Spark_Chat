@@ -125,8 +125,8 @@ class ProfileForm extends Component {
                 required
             />
             <button type="submit" className='create-btn'>Update Account</button>
-            <button className="closebtn" onClick={() => closeForm()}>Cancel</button>
           </form> 
+          <button className="closebtn" onClick={() => closeForm()}>Cancel</button>
         </section>
       );
     }

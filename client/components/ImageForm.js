@@ -57,8 +57,8 @@ class ImageForm extends React.Component {
                 </ul>
                 <button type='submit'>Add Image</button>
                 <button onClick={() => this.setState({images: []})}>Reset</button>
-                <button className="closebtn" onClick={() => closeForm()}>Cancel</button>
             </form>
+            <button className="closebtn" onClick={() => closeForm()}>Cancel</button>
         </section>
         )
     }

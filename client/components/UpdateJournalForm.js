@@ -74,6 +74,7 @@ class UpdateJournalForm extends React.Component {
     render(){
         const { onChange, handleSubmit, closeForm } = this;
         const { title, description, isPrivate } = this.state;
+        const { journal, deleteJournal } = this.props;
         return (
             <div className='sidebar' id="journal-form">
                 <form onSubmit={ handleSubmit }>
@@ -100,9 +101,9 @@ class UpdateJournalForm extends React.Component {
                         <option value={2}>Public</option>
                     </select>
                     <button type='submit'>Update Post</button>
-                    <button>Delete Post</button>
-                    <button className="closebtn" onClick={() => closeForm()}>Cancel</button>
                 </form>
+                <button className="closebtn" onClick={() => deleteJournal(journal)}>Delete Post</button>
+                <button className="closebtn" onClick={() => closeForm()}>Cancel</button>
             </div>
         )
     }
@@ -122,6 +123,9 @@ const mapDispatch = dispatch => {
     return {
         updateJournal: (journal, auth, id) => {
             dispatch(updateJournal(journal, auth, id))
+        },
+        deleteJournal: (journal) => {
+            dispatch(deleteJournal(journal))
         }
     }
 };

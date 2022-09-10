@@ -41,8 +41,8 @@ const ImageProfileForm = ({ auth, updateUser }) => {
                     image ? <img src={image} width='120' height='120'/> : null
                 }
                 <button type='submit'>Update Avatar</button>
-                <button className="closebtn" onClick={() => closeForm()}>Cancel</button>
             </form>
+            <button className="closebtn" onClick={() => closeForm()}>Cancel</button>
         </section>
     )
 };

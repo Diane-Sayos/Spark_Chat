@@ -12,30 +12,26 @@ const JournalSpecificView = ({ journal, images, deleteImage, auth }) => {
         document.getElementById("image-form").style.width = '300px';
     }
     return (
-        <section  className='main'>
+        <section  className='main' id='journal-app'>
             <p className='date'>{journal.date}</p>
             {journal.user ? <p className='author'> by {journal.user.fullName}</p> : null}
             <h2>{journal.title}</h2>
 
-            { images ? 
+            { journal.images ? 
                 <div className='container'>
                 {
-                    images.map(image => {
+                    journal.images.map(image => {
                         return (
                             <div className='box' key={image.id}>
                                 <img src={image.imageUrl}/>
                                 {image.userId === auth.id ? 
-                                <div>
-                                    <button onClick={() => deleteImage(image)}>Remove Image</button>
-                                </div> : null}
+                                <button onClick={() => deleteImage(image)}>Remove Image</button> : null}
                             </div>
                         )
                     })
                 }
-                </div>
-            :null}
-
-
+                </div>:null
+                }
             <p>{journal.description}</p>
             {
                 journal.userId === auth.id ? 
@@ -49,10 +45,8 @@ const JournalSpecificView = ({ journal, images, deleteImage, auth }) => {
 };
 const mapState = (state, {match})=> {
     const journal = state.journals.find(journal => journal.id === match.params.id*1) || {};
-    const images = state.images.filter(image => image.journalId === journal.id && image.userId === journal.userId) || [];
     return {
         journal,
-        images,
         auth: state.auth
     }
 };
