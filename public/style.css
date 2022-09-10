@@ -47,6 +47,7 @@ section {
   transition: margin-right 0.5s;
   /* If you want a transition effect */
   padding: 20px;
+  width: 100%;
 }
 /* HOME COMPONENT */
 
