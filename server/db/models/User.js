@@ -49,7 +49,7 @@ User.prototype.generateToken = function() {
 User.prototype.getJournals = async function(){
   let journals = await db.models.journal.findAll({
     include: [{model: db.models.image}, {model: User}],
-    order: [['date', 'DESC']]
+    order: [['id', 'DESC']]
   });
   return journals;
 };

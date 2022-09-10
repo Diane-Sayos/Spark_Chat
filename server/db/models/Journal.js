@@ -9,6 +9,7 @@ const Journal = db.define('journal', {
     },
     date: {
         type: Sequelize.DATE,
+        // defaultValue: Sequelize.DataTypes.NOW,
         get: function() {
             return this.getDataValue('date')
               .toLocaleString('en-US');

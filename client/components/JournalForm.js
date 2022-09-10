@@ -14,8 +14,6 @@ class JournalForm extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
     onChange = (e) => {
-        const date = new Date()
-            console.log(date)
         this.setState({[e.target.name]: e.target.value})
     }
     handleSubmit = (e) => {

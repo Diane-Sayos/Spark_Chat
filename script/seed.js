@@ -17,17 +17,17 @@ async function seed() {
   ])
   const journals = await Promise.all([
     Journal.create({
-      title:'Times Square Adventure',
-      description: 'Times Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square Adventure',
-      date: new Date('2202-06-30'),
-      userId: 1,
-      isPrivate: false
-    }),
-    Journal.create({
       title:'Central Park Adventure',
       description: 'Times Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square Adventure',
       date: new Date('2202-05-30'),
       userId: 2,
+      isPrivate: false
+    }),
+    Journal.create({
+      title:'Times Square Adventure',
+      description: 'Times Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square AdventureTimes Square Adventure',
+      date: new Date('2202-06-30'),
+      userId: 1,
       isPrivate: false
     }),
     Journal.create({
