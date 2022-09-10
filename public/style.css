@@ -33,7 +33,7 @@ nav a {
 } */
 /* ROUTE COMPONENT */
 
-#main-app {
+#journal-app, #profile-app {
   transition: margin-right 0.5s;
   /* If you want a transition effect */
   padding: 20px;
@@ -133,8 +133,8 @@ nav a {
   margin: 2px;
 }
  /* FORMS VIEW */
- #journal-form, #image-form, #updateProfile-form, #imageProfile-form {
-  height: 100%;
+ #journal-form, #image-form, #updateProfile-form, #imageProfile-form, #chat-form {
+  height: 60%;
   /* 100% Full-height */
   width: 0;
   /* 0 width - change this with JavaScript */
@@ -142,13 +142,14 @@ nav a {
   /* Stay in place */
   z-index: 1;
   /* Stay on top */
-  top: 150px;
+  top: 10em;
   right: 0;
   background-color: white;
   /* Black*/
   overflow-x: hidden;
   /* Disable horizontal scroll */
-  padding-top: 60px;
+  padding-top: 1em;
+  margin-right: 40px;
   /* Place content 60px from the top */
   transition: 0.5s;
   /* 0.5 second transition effect to slide in the sidebar */
@@ -156,7 +157,6 @@ nav a {
 form {
   display: flex;
   flex-direction: column;
-  margin: 1em;
 }
 form > input, form > textarea, form > select, form > button {
   margin: 5px;

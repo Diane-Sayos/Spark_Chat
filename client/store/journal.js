@@ -1,6 +1,5 @@
 import axios from 'axios'
 import history from '../history'
-import auth from './auth';
 
 const journals = (state = [], action) => {
   if(action.type === 'SET_JOURNALS'){
@@ -32,14 +31,20 @@ export const addJournal = (journal, auth) => {
       userId: auth.id,
       title: journal.title,
       description: journal.description,
-      isPrivate: journal.isPrivate
+      isPrivate: journal.isPrivate,
+      date: journal.date
     },
     {
       headers: {
         authorization: window.localStorage.getItem('token')
       }
     })).data;
-    dispatch({type: 'ADD_JOURNAL', journal});
+    console.log(journal)
+    //action is object
+    const action = {type: 'ADD_JOURNAL', journal};
+    //window has socket and it can send data -- sending action object and converting it into string using json stringify
+    window.socket.send(JSON.stringify(action))
+    dispatch(action);
     history.push(`/journals/${journal.id}`);
   }
 };
@@ -57,8 +62,9 @@ export const updateJournal = (journal, auth, id) => {
         authorization: window.localStorage.getItem('token')
       }
     })).data;
-    console.log(journal)
-    dispatch({type: 'UPDATE_JOURNAL', journal});
+    const action = {type: 'UPDATE_JOURNAL', journal};
+    window.socket.send(JSON.stringify(action))
+    dispatch(action);
   }
 };
 export default journals;

@@ -14,8 +14,7 @@ export const fetchUsers = () => {
                 authorization: window.localStorage.getItem('token')
             }
         })).data;
-        console.log(users)
-        dispatch({type: 'SET_USERS', users})
+        dispatch({type: 'SET_USERS', users});
     }
 };
 export default users;

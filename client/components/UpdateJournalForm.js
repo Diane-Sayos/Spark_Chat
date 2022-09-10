@@ -22,17 +22,11 @@ class UpdateJournalForm extends React.Component {
                 description: this.props.journal.description,
                 isPrivate: 2
             })
-        } else if(this.props.journal.isPrivate === true){
-            this.setState({
-                title: this.props.journal.title,
-                description: this.props.journal.description,
-                isPrivate: 1
-            })
         } else {
             this.setState({
                 title: this.props.journal.title,
                 description: this.props.journal.description,
-                isPrivate: 0
+                isPrivate: 1
             })
         }
         console.log('did mount')
@@ -45,30 +39,20 @@ class UpdateJournalForm extends React.Component {
                     description: this.props.journal.description,
                     isPrivate: 2
                 })
-                console.log('did update')
-            } else if(this.props.journal.isPrivate === true){
+            } else {
                 this.setState({
                     title: this.props.journal.title,
                     description: this.props.journal.description,
                     isPrivate: 1
                 })
-                console.log('did update')
-            } else {
-                this.setState({
-                    title: this.props.journal.title,
-                    description: this.props.journal.description,
-                    isPrivate: 0
-                })
-                console.log('did update')
             }
         }
         if(prevProps.journal.id && !this.props.journal.id){
             this.setState({
                 title: '',
                 description: '',
-                isPrivate: 0
+                isPrivate: 1
             })
-            console.log('did update')
         }
     }
     onChange = (e) => {
@@ -85,7 +69,7 @@ class UpdateJournalForm extends React.Component {
     };
     closeForm(){
         document.getElementById("journal-form").style.width = '0';
-        document.getElementById("main-app").style.marginRight = '0';
+        document.getElementById("journal-app").style.marginRight = '0';
     };
     render(){
         const { onChange, handleSubmit, closeForm } = this;
@@ -111,8 +95,7 @@ class UpdateJournalForm extends React.Component {
                         onChange={ onChange }
                         required
                     />
-                    <select value={ isPrivate || 0} name='isPrivate' onChange={ onChange }>
-                        <option value={0} disabled>Select Privacy</option>
+                    <select value={ isPrivate || 1} name='isPrivate' onChange={ onChange }>
                         <option value={1}>Private</option>
                         <option value={2}>Public</option>
                     </select>

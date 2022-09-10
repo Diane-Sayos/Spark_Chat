@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { addJournal, updateJournal }from '../store';
+import { addJournal }from '../store';
 
 class JournalForm extends React.Component {
     constructor(){
@@ -8,90 +8,29 @@ class JournalForm extends React.Component {
         this.state = {
             title: '',
             description: '',
-            isPrivate: 0
+            isPrivate: 1
         }
         this.onChange = this.onChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
-    // componentDidMount(){
-    //     if(this.props.journal.isPrivate === false){
-    //         this.setState({
-    //             title: this.props.journal.title,
-    //             description: this.props.journal.description,
-    //             isPrivate: 2
-    //         })
-    //     } else if(this.props.journal.isPrivate === true){
-    //         this.setState({
-    //             title: this.props.journal.title,
-    //             description: this.props.journal.description,
-    //             isPrivate: 1
-    //         })
-    //     } else {
-    //         this.setState({
-    //             title: this.props.journal.title,
-    //             description: this.props.journal.description,
-    //             isPrivate: 0
-    //         })
-    //     }
-    // };
-    // componentDidUpdate(prevProps){
-    //     if(!prevProps.journal.id && this.props.journal.id){
-    //         if(this.props.journal.isPrivate === false){
-    //             this.setState({
-    //                 title: this.props.journal.title,
-    //                 description: this.props.journal.description,
-    //                 isPrivate: 2
-    //             })
-    //         } else if(this.props.journal.isPrivate === true){
-    //             this.setState({
-    //                 title: this.props.journal.title,
-    //                 description: this.props.journal.description,
-    //                 isPrivate: 1
-    //             })
-    //         } else {
-    //             this.setState({
-    //                 title: this.props.journal.title,
-    //                 description: this.props.journal.description,
-    //                 isPrivate: 0
-    //             })
-    //         }
-    //     }
-    //     if(prevProps.journal.id && !this.props.journal.id){
-    //         this.setState({
-    //             title: '',
-    //             description: '',
-    //             isPrivate: 0
-    //         })
-    //     }
-    // }
     onChange = (e) => {
+        const date = new Date()
+            console.log(date)
         this.setState({[e.target.name]: e.target.value})
     }
     handleSubmit = (e) => {
         e.preventDefault();
         const { isPrivate } = this.state;
-        // if(this.props.journal.id){
-        //     if(isPrivate === '2'){
-        //         this.props.updateJournal({...this.state, isPrivate: false});
-        //     } else {
-        //         this.props.updateJournal({...this.state, isPrivate: true});
-        //     }
-        // } else {
-        //     if(isPrivate === '2'){
-        //         this.props.addJournal({...this.state, isPrivate: false}, this.props.auth);
-        //     } else {
-        //         this.props.addJournal({...this.state, isPrivate: true}, this.props.auth);
-        //     }
-        // }
         if(isPrivate === '2'){
-            this.props.addJournal({...this.state, isPrivate: false}, this.props.auth);
+            
+            this.props.addJournal({...this.state, isPrivate: false, date: new Date()}, this.props.auth);
         } else {
-            this.props.addJournal({...this.state, isPrivate: true}, this.props.auth);
+            this.props.addJournal({...this.state, isPrivate: true, date: new Date()}, this.props.auth);
         }
         this.setState({
             title: '',
             description: '',
-            isPrivate: 0
+            isPrivate: 1
         })
     };
     render(){
@@ -119,8 +58,7 @@ class JournalForm extends React.Component {
                         onChange={ onChange }
                         required
                     />
-                    <select value={ isPrivate || 0} name='isPrivate' onChange={ onChange }>
-                        <option value={0} disabled>Select Privacy</option>
+                    <select value={ isPrivate || 1} name='isPrivate' onChange={ onChange }>
                         <option value={1}>Private</option>
                         <option value={2}>Public</option>
                     </select>

@@ -1,6 +1,6 @@
 'use strict'
 const { faker } = require('@faker-js/faker');
-const {db, models: {User, Journal, Image } } = require('../server/db')
+const {db, models: {User, Journal, Image, Message } } = require('../server/db')
 /**
  * seed - this function clears the database, updates tables to
  *      match the models, and populates the database.
@@ -66,6 +66,14 @@ async function seed() {
     Image.create({imageUrl: faker.image.food(360, 240, true), userId: 2, journalId: 3}),
     Image.create({imageUrl: faker.image.food(360, 240, true), userId: 2, journalId: 3}),
 
+  ])
+  await Promise.all([
+    Message.create({text: 'Hello!', senderId: 1, receiverId: 2, date: new Date('2202-08-30')}),
+    Message.create({text: 'Hi!', senderId: 2, receiverId: 1, date: new Date('2202-08-30')}),
+    Message.create({text: 'Hello!', senderId: 1, receiverId: 3, date: new Date('2202-09-09')}),
+    Message.create({text: 'Hello! How are you?', senderId: 3, receiverId: 1, date: new Date('2202-09-09')}),
+    Message.create({text: 'I am doing great. Are we still on?', senderId: 1, receiverId: 3, date: new Date('2202-09-09')}),
+    Message.create({text: 'Yes! I am so excited!', senderId: 3, receiverId: 1, date: new Date('2202-09-09')}),
   ])
   console.log(`seeded ${users.length} users`)
   console.log(`seeded successfully`)

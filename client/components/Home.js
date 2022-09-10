@@ -3,8 +3,7 @@ import { connect } from 'react-redux';
 import JournalForm from './JournalForm';
 import { Link } from 'react-router-dom';
 
-export const Home = ({publicJournals})=> {
-  console.log(publicJournals[2])
+export const Home = ({publicJournals, images})=> {
   return (
     <section>
       <JournalForm />
@@ -24,13 +23,13 @@ export const Home = ({publicJournals})=> {
                 </div>
                 <ul className='post-images'>
                   {
-                    journal.images.length ? journal.images.map(image => {
+                    images.filter(image => image.journalId === journal.id).map(image => {
                       return (
                         <li key={image.id}>
                           <img src={image.imageUrl} width='100' height='100'/>
                         </li>
                       )
-                    }):null
+                    })
                   }
                 </ul>
               </li>
@@ -41,15 +40,12 @@ export const Home = ({publicJournals})=> {
     </section>
     
   )
-}
-
-/**
- * CONTAINER
- */
+};
 const mapState = state => {
   const publicJournals = state.journals.filter(journal => journal.isPrivate === false) || {};
   return {
-    publicJournals
+    publicJournals,
+    images: state.images
   }
 };
 export default connect(mapState)(Home)

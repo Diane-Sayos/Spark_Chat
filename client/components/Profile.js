@@ -5,12 +5,16 @@ import JournalForm from './JournalForm';
 
 const Profile = ({ auth, user, journals }) => {
     const openUpdateProfileForm = () => {
-        document.getElementById("main-app").style.marginRight = '350px';
+        document.getElementById("profile-app").style.marginRight = '350px';
         document.getElementById("updateProfile-form").style.width = '300px';
     }
     const openUpdateImageForm = () => {
-        document.getElementById("main-app").style.marginRight = '350px';
+        document.getElementById("profile-app").style.marginRight = '350px';
         document.getElementById("imageProfile-form").style.width = '300px';
+    }
+    const openChatForm = () => {
+        document.getElementById("profile-app").style.marginRight = '350px';
+        document.getElementById("chat-form").style.width = '300px';
     }
     return (
         <section>
@@ -21,9 +25,9 @@ const Profile = ({ auth, user, journals }) => {
                 <div>
                 <button onClick={() => openUpdateProfileForm()} className='openForm-btn'>&#9776; Edit Profile</button>
                 <button onClick={() => openUpdateImageForm()} className='openForm-btn'>&#9776; Update Avatar</button>
-                </div>: null
+                </div>:<button onClick={() => openChatForm()} className='openForm-btn'>&#9776; Send Message</button>
             }
-            <button>Send Message</button>
+
             {
                 auth.id === user.id ? <JournalForm /> : null
             }

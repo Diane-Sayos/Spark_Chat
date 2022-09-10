@@ -1,9 +1,9 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {withRouter, Route, Switch } from 'react-router-dom'
+import {withRouter, Route, Switch, Redirect } from 'react-router-dom'
 import { Login } from './components/AuthForm';
 import Home from './components/Home';
-import {me, fetchJournals, fetchImages, fetchUsers } from './store'
+import {me, fetchJournals, fetchImages, fetchUsers, fetchMessages } from './store'
 import Profile from './components/Profile';
 import JournalSpecificView from './components/JournalSpecificView';
 import JournalForm from './components/JournalForm';
@@ -12,33 +12,51 @@ import UpdateJournalForm from './components/UpdateJournalForm';
 import { Signup } from './components/ProfileForm';
 import UpdateProfileForm from './components/UpdateProfileForm';
 import ImageProfileForm from './components/ImageProfileForm';
+import Chat from './components/Chat';
 /**
  * COMPONENT
  */
 class Routes extends Component {
   componentDidMount() {
     this.props.loadInitialData()
+    const url = window.location.origin.replace('http', 'ws');
+    window.socket = new WebSocket(url);
+    //server is just a channel that has the ability to send and receive messages in real time
+    window.socket.addEventListener('message', (e) => {
+      //converting action string into an object same as it would in thunks
+      const action = JSON.parse(e.data);
+      this.props.dispatchAction(action);
+    })
   }
   componentDidUpdate(prevProps) {
     if (!prevProps.isLoggedIn && this.props.isLoggedIn) {
       this.props.loadData();
     }
+    if (prevProps.isLoggedIn && !this.props.isLoggedIn) {
+      //when user logout, we close the connection on sockets
+      
+    }
   }
   render() {
     const {isLoggedIn} = this.props
-
     return (
-      <div id='main-app'>
+      <div>
         {isLoggedIn ? (
           <div>
+            {window.location.pathname === '/' ? <Redirect to='/home' /> : null }
             <Route exact path="/home" component={Home} />
-            <Route exact path='/profile/:id' component={Profile} />
-            <Route exact path='/profile/:id' component={UpdateProfileForm} />
-            <Route exact path='/profile/:id' component={ImageProfileForm} />
             <Route exact path='/journals' component={JournalForm} />
-            <Route exact path='/journals/:id' component={JournalSpecificView} />
-            <Route exact path='/journals/:id' component={UpdateJournalForm} />
-            <Route exact path='/journals/:id' component={ImageForm} />
+            <div id='profile-app'>
+              <Route exact path='/profile/:id' component={Profile} />
+                <Route exact path='/profile/:id' component={UpdateProfileForm} />
+                <Route exact path='/profile/:id' component={ImageProfileForm} />
+                <Route exact path='/profile/:id' component={Chat} />
+            </div>
+            <div id='journal-app'>
+              <Route exact path='/journals/:id' component={JournalSpecificView} />
+                <Route exact path='/journals/:id' component={UpdateJournalForm} />
+                <Route exact path='/journals/:id' component={ImageForm} />
+            </div>
           </div>
         ) : (
           <Switch>
@@ -72,6 +90,10 @@ const mapDispatch = dispatch => {
       dispatch(fetchJournals())
       dispatch(fetchImages())
       dispatch(fetchUsers())
+      dispatch(fetchMessages())
+    },
+    dispatchAction: (action) => {
+      dispatch(action)
     }
   }
 }

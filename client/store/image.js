@@ -33,7 +33,9 @@ export const addImage = (image, authId, journalId) => {
                 authorization: window.localStorage.getItem('token')
             }
         })).data;
-        dispatch({type: 'ADD_IMAGE', image})
+        const action = {type: 'ADD_IMAGE', image};
+        window.socket.send(JSON.stringify(action))
+        dispatch(action);
     }
 };
 //delete an image
@@ -44,7 +46,9 @@ export const deleteImage = (image) => {
                 authorization: window.localStorage.getItem('token')
             }
         });
-        dispatch({type: 'DELETE_IMAGE', image})
+        const action = {type: 'DELETE_IMAGE', image};
+        window.socket.send(JSON.stringify(action))
+        dispatch(action);
     }
 };
 export default images;

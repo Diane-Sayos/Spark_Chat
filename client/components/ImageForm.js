@@ -1,40 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { addImage } from '../store';
-// const ImageProfileForm = ({ journal, auth, addImage }) => {
-//     const [image, setImage] = useState('');
-//     const onChangeImage = (e) => {
-//         console.log(e.target.files)
-//         const image = e.target.files[0];
-//         const reader = new FileReader();
-//         reader.addEventListener('load', () => {
-//             setImage(reader.result)
-//         });
-//         reader.readAsDataURL(image);
-//     }
-//     const handleSubmit = (e) => {
-//         e.preventDefault();
-//         console.log(image)
-//         addProfileImage(image, auth)
-//         setImage('');
-//     };
-//     return (
-//         <section>
-//             <form onSubmit={ handleSubmit }>
-//                 <label>Image:<br />
-//                     <input
-//                         type='file'
-//                         onChange={ onChangeImage }
-//                     />
-//                 </label>
-//                 <img src={image? image : null} width='120' height='120'/>
-//                 <button type='submit'>Add Image</button>
-//                 <button onClick={() => setImage({image: ''})}>Cancel</button>
-//             </form>
-//         </section>
-//     )
-// };
-// export default ImageProfileForm;
+
 class ImageForm extends React.Component {
     constructor(){
         super()
@@ -60,10 +27,11 @@ class ImageForm extends React.Component {
             this.props.addImage(image, this.props.auth.id, this.props.journal.id)
         });
         this.setState({images: []});
+        this.closeForm();
     };
     closeForm(){
         document.getElementById("image-form").style.width = '0';
-        document.getElementById("main-app").style.marginRight = '0';
+        document.getElementById("journal-app").style.marginRight = '0';
     };
     render(){
         const { onChangeImage, handleSubmit, closeForm } = this;

@@ -76,7 +76,7 @@ class ProfileForm extends Component {
     };
     closeForm(){
       document.getElementById("updateProfile-form").style.width = '0';
-      document.getElementById("main-app").style.marginRight = '0';
+      document.getElementById("profile-app").style.marginRight = '0';
     }
     render() {
       const { username, firstName, lastName, password, verifyPassword } = this.state;

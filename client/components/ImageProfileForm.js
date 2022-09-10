@@ -26,7 +26,7 @@ const ImageProfileForm = ({ auth, updateUser }) => {
     };
     const closeForm = () => {
         document.getElementById("imageProfile-form").style.width = '0';
-        document.getElementById("main-app").style.marginRight = '0';
+        document.getElementById("profile-app").style.marginRight = '0';
     }
     return (
         <section className='sidebar' id='imageProfile-form'>
