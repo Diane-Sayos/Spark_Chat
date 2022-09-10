@@ -22,11 +22,10 @@ export const fetchImages = () => {
     }
 };
 //create an image
-export const addImage = (image, authId, journalId) => {
+export const addImage = (image, journalId) => {
     return async(dispatch) => {
         image = (await axios.post('/api/images', {
             imageUrl: image,
-            userId: authId,
             journalId: journalId
         }, {
             headers: {

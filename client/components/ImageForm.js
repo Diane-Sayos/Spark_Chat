@@ -24,7 +24,7 @@ class ImageForm extends React.Component {
         e.preventDefault();
         console.log(this.state.images)
         this.state.images.map(image => {
-            this.props.addImage(image, this.props.auth.id, this.props.journal.id)
+            this.props.addImage(image, this.props.journal.id)
         });
         this.setState({images: []});
         this.closeForm();
@@ -72,8 +72,8 @@ const mapState = (state, { match }) => {
 };
 const mapDispatch = dispatch => {
     return {
-        addImage: (image, authId, journalId) => {
-            dispatch(addImage(image, authId, journalId))
+        addImage: (image, journalId) => {
+            dispatch(addImage(image, journalId))
         }
     }
 };

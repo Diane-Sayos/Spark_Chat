@@ -20,7 +20,7 @@ router.post('/', isLoggedIn, async(req, res, next) => {
 //delete image
 router.delete('/:id', isLoggedIn, async(req, res, next) => {
   try{
-    await req.user.deleteImage(req.params.id);
+    await req.user.deleteImage(req.params.id*1);
     res.sendStatus(204);
   } catch (ex) {
     next(ex)

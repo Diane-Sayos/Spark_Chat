@@ -12,41 +12,56 @@ const JournalSpecificView = ({ journal, images, deleteImage, auth }) => {
         document.getElementById("image-form").style.width = '300px';
     }
     return (
-        <section  className='main' id='journal-app'>
-            <p className='date'>{journal.date}</p>
-            {journal.user ? <p className='author'> by {journal.user.fullName}</p> : null}
-            <h2>{journal.title}</h2>
-
-            { journal.images ? 
-                <div className='container'>
-                {
-                    journal.images.map(image => {
-                        return (
-                            <div className='box' key={image.id}>
-                                <img src={image.imageUrl}/>
-                                {image.userId === auth.id ? 
-                                <button onClick={() => deleteImage(image)}>Remove Image</button> : null}
-                            </div>
-                        )
-                    })
-                }
-                </div>:null
-                }
-            <p>{journal.description}</p>
+        <section className='main' id='journal-app'>
             {
-                journal.userId === auth.id ? 
-                <div className='form-btn'>
+                journal.userId === auth.id ?
+                <div>
+                    <p className='date'>{journal.date}</p>
+                    <p className='author'> by {auth.fullName}</p>
+                    <h2>{journal.title}</h2>
+                    <div className='container'>
+                        {
+                            images.map(image => {
+                                return (
+                                    <div className='box' key={image.id}>
+                                        <img src={image.imageUrl}/>
+                                        <button onClick={() => deleteImage(image)}>Remove Image</button>
+                                    </div>
+                                )
+                            })
+                        }
+                    </div>
+                    <p>{journal.description}</p>
                     <button onClick={() => openPostForm()} className='openForm-btn'>&#9776; Edit Post</button>
                     <button onClick={() => openImageForm()} className='openForm-btn'>&#9776; Add Images</button>
-                </div> : null
+                </div> : 
+                <div>
+                    <p className='date'>{journal.date}</p>
+                    {journal.user ? <p className='author'> by {journal.user.fullName}</p> : null}
+                    <h2>{journal.title}</h2> 
+                        <div className='container'>
+                        {
+                            images.map(image => {
+                                return (
+                                    <div className='box' key={image.id}>
+                                        <img src={image.imageUrl} />
+                                    </div>
+                                )
+                            })
+                        }
+                        </div>
+                    <p>{journal.description}</p>
+                </div>
             }
         </section>
     )
 };
 const mapState = (state, {match})=> {
     const journal = state.journals.find(journal => journal.id === match.params.id*1) || {};
+    const images = state.images.filter(image => image.journalId === journal.id) || [];
     return {
         journal,
+        images,
         auth: state.auth
     }
 };

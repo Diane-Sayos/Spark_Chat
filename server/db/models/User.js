@@ -114,15 +114,9 @@ User.prototype.getMessages = async function(){
     include: [{
       model: User,
       as: 'sender',
-      include: [{
-        model: db.models.image,
-      }]
     },{
       model: User,
       as : 'receiver',
-      include: [{
-        model: db.models.image,
-      }]
     }]
   })
   return messages;
@@ -136,15 +130,9 @@ User.prototype.getMessage = async function(messageBody){
     include: [{
       model: User,
       as: 'sender',
-      include: [{
-        model: db.models.image,
-      }]
     },{
       model: User,
       as : 'receiver',
-      include: [{
-        model: db.models.image,
-      }]
     }]
   });
   return message;
