@@ -76,7 +76,7 @@ class UpdateJournalForm extends React.Component {
         const { title, description, isPrivate } = this.state;
         const { journal, deleteJournal } = this.props;
         return (
-            <div className='sidebar' id="journal-form">
+            <div id="journal-form">
                 <form onSubmit={ handleSubmit }>
                     <input
                         placeholder='Write a Title'

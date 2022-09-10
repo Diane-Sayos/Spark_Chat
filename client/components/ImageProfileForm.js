@@ -29,7 +29,7 @@ const ImageProfileForm = ({ auth, updateUser }) => {
         document.getElementById("profile-app").style.marginRight = '0';
     }
     return (
-        <section className='sidebar' id='imageProfile-form'>
+        <section id='imageProfile-form'>
             <form onSubmit={ handleSubmit }>
                 <label>Image:<br />
                     <input

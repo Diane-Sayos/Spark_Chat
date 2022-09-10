@@ -82,7 +82,7 @@ class ProfileForm extends Component {
       const { username, firstName, lastName, password, verifyPassword } = this.state;
       const { onChange, handleSubmit, closeForm} = this;
       return (
-        <section className='sidebar' id="updateProfile-form">
+        <section id="updateProfile-form">
           <form onSubmit={handleSubmit}>
             <input
                 placeholder='First Name'

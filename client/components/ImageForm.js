@@ -37,7 +37,7 @@ class ImageForm extends React.Component {
         const { onChangeImage, handleSubmit, closeForm } = this;
         const { images } = this.state;
         return (
-            <section className='sidebar' id="image-form">
+            <section id="image-form">
             <form onSubmit={ handleSubmit }>
                 <label>Image:<br />
                     <input
