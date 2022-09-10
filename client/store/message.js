@@ -5,7 +5,7 @@ const messages = (state = [], action) => {
     if(action.type === 'SET_MESSAGES'){
         return action.messages;
     } else if(action.type === 'ADD_MESSAGE'){
-        return [action.message, ...state];
+        return [...state, action.message];
     } else if(action.type === 'DELETE_MESSAGE'){
         return state.filter(message => message.id !== action.message.id);
     }
@@ -26,14 +26,14 @@ export const fetchMessages = () => {
 //add message -- message - [text, receiverId, senderId, date]
 export const addMessage = (message) => {
     return async(dispatch) => {
-        const message = (await axios.post('/api/messages', message, {
+        message = (await axios.post('/api/messages', message, {
             headers: {
                 authorization: window.localStorage.getItem('token')
             }
         })).data;
         console.log(message)
-        const action = {type: 'ADD_MESAGE', message};
-        window.WebSocket.send(JSON.stringify(action));
+        const action = {type: 'ADD_MESSAGE', message};
+        window.socket.send(JSON.stringify(action));
         dispatch(action);
     }
 };
@@ -46,7 +46,7 @@ export const deleteMessage = (message) => {
             }
         });
         const action = { type: 'DELETE_MESSAGE', message};
-        window.WebSocket.send(JSON.stringify(action));
+        window.socket.send(JSON.stringify(action));
         dispatch(action)
     }
 };

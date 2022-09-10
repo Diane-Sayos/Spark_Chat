@@ -123,14 +123,36 @@ User.prototype.getMessages = async function(){
       include: [{
         model: db.models.image,
       }]
-    }],
-    order: [['date', 'DESC']]
+    }]
   })
   return messages;
 };
+//get specific message
+User.prototype.getMessage = async function(messageBody){
+  let message = await db.models.message.findOne({
+    where: {
+      id: messageBody.id
+    },
+    include: [{
+      model: User,
+      as: 'sender',
+      include: [{
+        model: db.models.image,
+      }]
+    },{
+      model: User,
+      as : 'receiver',
+      include: [{
+        model: db.models.image,
+      }]
+    }]
+  });
+  return message;
+}
 //add a message
-User.prototype.addMessage = async function(message){
-  return (await db.models.message.create(message))
+User.prototype.addMessage = async function(messageBody){
+  const message = await db.models.message.create(messageBody);
+  return this.getMessage(message);
 };
 //delete message
 User.prototype.deleteMessage = async function(messageId){

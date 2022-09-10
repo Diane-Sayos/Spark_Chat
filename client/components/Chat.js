@@ -1,7 +1,8 @@
 import React, { useState} from 'react';
 import { connect } from 'react-redux';
+import { addMessage, deleteMessage } from '../store';
 
-const Chat = ({auth, user, messages}) => {
+const Chat = ({auth, user, messages, addMessage, deleteMessage}) => {
     const closeForm = () => {
         document.getElementById("chat-form").style.width = '0';
         document.getElementById("profile-app").style.marginRight = '0';
@@ -9,9 +10,14 @@ const Chat = ({auth, user, messages}) => {
     const [message, setMessage] = useState('');
     const onChange = (e) => {
         setMessage(e.target.value);
+        console.log(message)
     }
     const handleSubmit = (e) => {
         e.preventDefault();
+        const messageObj = {receiverId: user.id, senderId: auth.id, text: message, date: new Date()};
+        console.log(messageObj)
+        addMessage(messageObj);
+        setMessage('');
     }
     return (
         <section className='sidebar' id='chat-form'>
@@ -20,20 +26,33 @@ const Chat = ({auth, user, messages}) => {
             <hr />
             <ul>
             {
-                messages.map(message => {
+                messages? messages.map(message => {
                     return (
-                        <li key={message.id}>
-                            <img src={message.sender.image} className='avatar' width='20' height='20' />
-                            {message.sender.fullName}
-                            {message.text}
+                        <li key={message.id} className='chat-box'>
+                            {
+                                message.senderId === auth.id ?
+                                <div className='message-sender'>
+                                    <img src={message.sender.image} className='avatar' width='20' height='20' />
+                                    {message.sender.fullName}< br/>
+                                    <p className='chat-date'>{message.date}</p>
+                                    <p className='chat'>{message.text}</p>
+                                    <button onClick={ () => deleteMessage(message)}>Unsend</button>
+                                </div>:
+                                <div className='message-receiver'>
+                                    <img src={message.sender.image} className='avatar' width='20' height='20' />
+                                    {message.sender.fullName}< br/>
+                                    <p className='chat-date'>{message.date}</p>
+                                    <p className='chat'>{message.text}</p>
+                                </div>
+                            }
                         </li>
                     )
-                })
+                }):null
             }
             </ul>
             <form onSubmit={ handleSubmit }>
                 <input
-                    placeholder='Write a Title'
+                    placeholder='Write a Message'
                     type='text'
                     name='message'
                     value={ message }

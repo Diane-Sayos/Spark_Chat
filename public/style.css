@@ -46,7 +46,7 @@ nav a {
   padding: 1em;
   background-color: white;
   position: relative;
-  box-shadow: 3px 3px 2px 3px #888888;
+  box-shadow: 3px 2px 2px 4px #888888;
 }
 /* avatar | user | date */
 .post-user {
@@ -82,6 +82,33 @@ nav a {
 }
 .author {
   float: left;
+}
+/* CHAT COMPONENT */
+.message-sender {
+  margin: 1em;
+  padding: 1em;
+  background-color: white;
+  position: relative;
+  box-shadow: 3px 4px 2px 4px #888888;
+  text-align: right;
+  font-size: 15px;
+}
+.message-receiver {
+  margin: 1em;
+  padding: 1em;
+  background-color: white;
+  position: relative;
+  box-shadow: -3px 4px 2px 4px #888888;
+  text-align: left;
+  font-size: 15px;
+}
+.chat-date {
+  font-size: 8px;
+  margin: 2px;
+}
+.chat {
+  font-size: 12px;
+  margin: 3px;
 }
 /* SPECIFIC POST VIEW */
 
