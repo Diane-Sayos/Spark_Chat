@@ -12,7 +12,7 @@ const JournalSpecificView = ({ journal, images, deleteImage, auth }) => {
         document.getElementById("image-form").style.width = '300px';
     }
     return (
-        <section className='main' id='journal-app'>
+        <section id='journal-app'>
             {
                 journal.userId === auth.id ?
                 <div>

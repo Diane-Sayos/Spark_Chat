@@ -38,11 +38,11 @@ nav a {
   display: flex;
   flex: 1;
 }
+section {
+  width: 100%
+}
 /* ROUTE COMPONENT */
 
-#profile-app {
-  width: 100%;
-}
 #journal-app, #profile-app {
   transition: margin-right 0.5s;
   /* If you want a transition effect */
