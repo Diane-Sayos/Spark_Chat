@@ -17,10 +17,10 @@ const Profile = ({ auth, user, journals }) => {
         document.getElementById("chat-form").style.width = '300px';
     }
     return (
-        <section id='profile-app'>
+        <section  id='profile-app'>
             {
                 auth.id === user.id ?
-                <div id='profile-app'>
+                <div>
                     <img src={ auth.image } width='140' height='140'/>
                     <h2>{ auth.fullName }</h2>
                     <button onClick={() => openUpdateProfileForm()} className='openForm-btn'>&#9776; Edit Profile</button>

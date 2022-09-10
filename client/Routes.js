@@ -46,13 +46,13 @@ class Routes extends Component {
             {window.location.pathname === '/' ? <Redirect to='/home' /> : null }
             <Route exact path="/home" component={Home} />
             <Route exact path='/journals' component={JournalForm} />
-              <Route exact path='/profile/:id' component={Profile} />
-                <Route exact path='/profile/:id' component={UpdateProfileForm} />
-                <Route exact path='/profile/:id' component={ImageProfileForm} />
-                <Route exact path='/profile/:id' component={Chat} />
-              <Route exact path='/journals/:id' component={JournalSpecificView} />
-                <Route exact path='/journals/:id' component={UpdateJournalForm} />
-                <Route exact path='/journals/:id' component={ImageForm} />
+            <Route exact path='/profile/:id' component={Profile} />
+            <Route exact path='/profile/:id' component={UpdateProfileForm} />
+            <Route exact path='/profile/:id' component={ImageProfileForm} />
+            <Route exact path='/profile/:id' component={Chat} />
+            <Route exact path='/journals/:id' component={JournalSpecificView} />
+            <Route exact path='/journals/:id' component={UpdateJournalForm} />
+            <Route exact path='/journals/:id' component={ImageForm} />
           </div>
         ) : (
           <Switch>
