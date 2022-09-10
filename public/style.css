@@ -24,13 +24,13 @@ nav a {
   display: inline-block;
   margin: 1em;
 }
-/* .closebtn {
+.closeChat-btn {
   position: absolute;
   top: 0;
   right: 25px;
   font-size: 20px;
   margin-top: 50px;
-} */
+}
 /* ROUTE COMPONENT */
 
 #journal-app, #profile-app {
