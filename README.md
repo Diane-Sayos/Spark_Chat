@@ -1,20 +1,18 @@
 # Project: Spark Chat
-## Deployed Link:
-https://diane-stackathon.herokuapp.com/
 
-### Language:
+## Language:
 Javascript
 
-### Frameworks:
+## Frameworks:
 Express.js
 
-### Libraries:
+## Libraries:
 React, Redux, Sequelize, Bcrypt, JSON Web Tokens, Faker
 
-### APIs:
+## APIs:
 Websocket
 
-### Tooling:
+## Tooling:
 Git, Node.js, Webpack, Babel
 
 ## Description:
