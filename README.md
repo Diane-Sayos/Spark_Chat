@@ -1,23 +1,34 @@
-# Project: Spark Chat
+# Spark Chat
 
-## Language:
-Javascript
+<details>
+    <summary>Description</summary>
+    A Social Media Platform that lets users post with images.
+    Users need to create an account in order to view public posts.
+    They are able to create a post and add images with it and set the privacy to either public for everyone to see or private to serve as their own persona journal.
+    Users are also able to take advantage of the message feature.
+    The platform happens in realtime made possible by using Websocket and is designed using plain CSS and sample data is provided using Faker.
+</details>
 
-## Frameworks:
-Express.js
+<details>
+    <summary>Tech Stack</summary>
+    Javascript
+    Express.js
+    Node.js
+    Git
+    Webpack
+    Babel
+    React
+    Redux
+    Sequelize
+    Bcrypt
+    JSON Web Tokens
+    Faker
+    Websocket
+</details>
 
-## Libraries:
-React, Redux, Sequelize, Bcrypt, JSON Web Tokens, Faker
 
-## APIs:
-Websocket
+## Landing Page
+![Screenshot](landingpage.png)
 
-## Tooling:
-Git, Node.js, Webpack, Babel
-
-## Description:
-A Social Media Platform that lets users post with images.
-Users need to create an account in order to view public posts.
-They are able to create a post and add images with it and set the privacy to either public for everyone to see or private to serve as their own persona journal.
-Users are also able to take advantage of the message feature.
-The platform happens in realtime made possible by using Websocket and is designed using plain CSS and sample data is provided using Faker.
+## Feed Page
+![Screenshot](feed.png)
