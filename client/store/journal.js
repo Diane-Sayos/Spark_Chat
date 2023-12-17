@@ -39,6 +39,7 @@ export const addJournal = (journal, auth) => {
         authorization: window.localStorage.getItem('token')
       }
     })).data;
+
     //action is object
     const action = {type: 'ADD_JOURNAL', journal};
     //window has socket and it can send data -- sending action object and converting it into string using json stringify
