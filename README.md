@@ -11,18 +11,18 @@
 
 <details>
     <summary>Tech Stack</summary>
-    Javascript
-    Express.js
-    Node.js
-    Git
-    Webpack
-    Babel
-    React
-    Redux
-    Sequelize
-    Bcrypt
-    JSON Web Tokens
-    Faker
+    Javascript ||
+    Express.js ||
+    Node.js ||
+    Git ||
+    Webpack ||
+    Babel ||
+    React ||
+    Redux ||
+    Sequelize ||
+    Bcrypt ||
+    JSON Web Tokens ||
+    Faker ||
     Websocket
 </details>
 
