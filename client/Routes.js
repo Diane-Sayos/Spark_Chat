@@ -18,7 +18,8 @@ import Chat from './components/Chat';
  */
 class Routes extends Component {
   componentDidMount() {
-    this.props.loadInitialData()
+    this.props.loadInitialData();
+    console.log(this.props.loadInitialData())
     const url = window.location.origin.replace('http', 'ws');
     window.socket = new WebSocket(url);
     //server is just a channel that has the ability to send and receive messages in real time

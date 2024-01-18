@@ -28,7 +28,25 @@
 
 
 ## Landing Page
-![Screenshot](landingpage.png)
+![Screenshot](sparkchat-landingpage.png)
+
+## Sign Up Page
+![Screenshot](sparkchat-signup.png)
 
 ## Feed Page
-![Screenshot](feed.png)
+![Screenshot](sparkchat-feed.png)
+
+## Update Avatar Functionality
+![Screenshot](sparkchat-editavatar.png)
+
+## Update Profile Functionality
+![Screenshot](sparkchat-editprofile.png)
+
+## Profile Page
+![Screenshot](sparkchat-profilepage.png)
+
+## Other User Page
+![Screenshot](sparkchat-specificpage.png)
+
+## Message Functionality
+![Screenshot](sparkchat-chat.png)
